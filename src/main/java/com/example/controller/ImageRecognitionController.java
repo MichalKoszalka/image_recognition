@@ -6,6 +6,7 @@ import java.util.ResourceBundle;
 import com.example.annotation.Controller;
 import com.example.enums.Screen;
 import com.example.model.ScreensModel;
+import com.example.neural.ImageRecognitionResult;
 import com.example.neural.NeuralNetImageRecognitionService;
 import com.example.neural.NeuralNetImageRecognitionServiceAdapter;
 
@@ -28,21 +29,23 @@ public class ImageRecognitionController extends ControlledScreen implements Init
 
 	@FXML
 	public void onStartClicked() {
-		neuralNetImageRecognitionService.runImageRecognitionResult(ScreensModel.getInstance().getNeuralNet(),
+		ImageRecognitionResult imageRecognitionResult = neuralNetImageRecognitionService.runImageRecognitionResult(ScreensModel.getInstance().getNeuralNet(),
 				ScreensModel.getInstance().getImagesToRecognize());
+		ScreensModel.getInstance().getImageRecognitionResult().addAll(imageRecognitionResult.getRecognitionResults());
+	}
+
+	@FXML
+	public void onShowResultsClicked() {
+		screensController.setScreen(Screen.RESULTS);
 	}
 
 	@FXML
 	public void onBackClicked() {
-		screensController.setScreen(Screen.NEURAL_NET_SELECTION);
+		screensController.setScreen(Screen.IMAGES_SELECTION);
 	}
 
 	public void increaseProgressBarValue() {
 		recognitionProgressBar.setProgress(calculateProgressValue());
-	}
-
-	public void showImageProcessingError() {
-		// TODO: show on toast
 	}
 
 	private double calculateProgressValue() {

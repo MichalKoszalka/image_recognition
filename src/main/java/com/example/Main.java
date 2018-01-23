@@ -13,8 +13,9 @@ public class Main extends Application {
     @Override
     public void start(Stage primaryStage) throws Exception{
 		Parent root = ScreensController.getInstance();
-		primaryStage.setTitle("Hello World");
-        primaryStage.setScene(new Scene(root, 300, 300));
+		primaryStage.setTitle("Image recognition");
+        primaryStage.setScene(new Scene(root));
+		primaryStage.setFullScreen(true);
         primaryStage.show();
     }
 

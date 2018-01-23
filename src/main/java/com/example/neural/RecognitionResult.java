@@ -2,12 +2,9 @@ package com.example.neural;
 
 public class RecognitionResult {
 
-	private String imageName;
-	private String firstMatch;
-	private String secondMatch;
-	private String thirdMatch;
-	private String fourthMatch;
-	private String fifthMatch;
+	private  String imageName;
+	private  String resultName;
+	private  Double probability;
 
 	public String getImageName() {
 		return imageName;
@@ -17,43 +14,19 @@ public class RecognitionResult {
 		this.imageName = imageName;
 	}
 
-	public String getFirstMatch() {
-		return firstMatch;
+	public String getResultName() {
+		return resultName;
 	}
 
-	public void setFirstMatch(String firstMatch) {
-		this.firstMatch = firstMatch;
+	public void setResultName(String resultName) {
+		this.resultName = resultName;
 	}
 
-	public String getSecondMatch() {
-		return secondMatch;
+	public Double getProbability() {
+		return probability;
 	}
 
-	public void setSecondMatch(String secondMatch) {
-		this.secondMatch = secondMatch;
-	}
-
-	public String getThirdMatch() {
-		return thirdMatch;
-	}
-
-	public void setThirdMatch(String thirdMatch) {
-		this.thirdMatch = thirdMatch;
-	}
-
-	public String getFourthMatch() {
-		return fourthMatch;
-	}
-
-	public void setFourthMatch(String fourthMatch) {
-		this.fourthMatch = fourthMatch;
-	}
-
-	public String getFifthMatch() {
-		return fifthMatch;
-	}
-
-	public void setFifthMatch(String fifthMatch) {
-		this.fifthMatch = fifthMatch;
+	public void setProbability(Double probability) {
+		this.probability = probability;
 	}
 }

@@ -1,17 +1,18 @@
 package com.example.neural;
 
-import java.util.HashMap;
-import java.util.Map;
+import java.util.ArrayList;
+import java.util.List;
 
 public class ImageRecognitionResult {
 
-	private Map<String, Map<String, Double>> probabilityMap = new HashMap<>();
+	private List<RecognitionResult> recognitionResults = new ArrayList<>();
 
-	public Map<String, Map<String, Double>> getProbabilityMap() {
-		return probabilityMap;
+	public List<RecognitionResult> getRecognitionResults() {
+		return recognitionResults;
 	}
 
-	public void setProbabilityMap(Map<String, Map<String, Double>> probabilityMap) {
-		this.probabilityMap = probabilityMap;
+	public void setRecognitionResults(List<RecognitionResult> recognitionResults) {
+		this.recognitionResults = recognitionResults;
 	}
+
 }

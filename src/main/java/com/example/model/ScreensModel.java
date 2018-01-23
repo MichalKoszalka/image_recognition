@@ -5,6 +5,10 @@ import java.util.ArrayList;
 import java.util.List;
 
 import com.example.neural.ImageRecognitionResult;
+import com.example.neural.RecognitionResult;
+
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 
 public class ScreensModel {
 
@@ -14,7 +18,7 @@ public class ScreensModel {
 
 	private List<File> imagesToRecognize = new ArrayList<>();
 
-	private ImageRecognitionResult imageRecognitionResult;
+	private ObservableList<RecognitionResult> imageRecognitionResult = FXCollections.observableArrayList();
 
 	private ScreensModel() {
 	}
@@ -42,11 +46,11 @@ public class ScreensModel {
 		this.imagesToRecognize = imagesToRecognize;
 	}
 
-	public ImageRecognitionResult getImageRecognitionResult() {
+	public ObservableList<RecognitionResult> getImageRecognitionResult() {
 		return imageRecognitionResult;
 	}
 
-	public void setImageRecognitionResult(ImageRecognitionResult imageRecognitionResult) {
+	public void setImageRecognitionResult(ObservableList<RecognitionResult> imageRecognitionResult) {
 		this.imageRecognitionResult = imageRecognitionResult;
 	}
 }
