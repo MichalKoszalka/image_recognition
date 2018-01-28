@@ -28,7 +28,11 @@ public class ScreensController extends StackPane {
 
 	public static ScreensController getInstance() {
 		if (instance == null) {
-			instance = new ScreensController();
+			synchronized (ScreensController.class) {
+				if (instance == null) {
+					instance = new ScreensController();
+				}
+			}
 		}
 		return instance;
 	}
@@ -41,7 +45,6 @@ public class ScreensController extends StackPane {
 				controllerClass -> loadScreen(controllerClass.getAnnotation(Controller.class).screen(),
 						controllerClass.getAnnotation(Controller.class).path()));
 		setScreen(Screen.MAIN_SCREEN);
-
 	}
 
 	public void addScreen(Screen name, Node screen) {

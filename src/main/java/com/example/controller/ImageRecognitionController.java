@@ -41,6 +41,8 @@ public class ImageRecognitionController extends ControlledScreen implements Init
 
 	@FXML
 	public void onBackClicked() {
+		ScreensModel.getInstance().getImageRecognitionResult().clear();
+		recognitionProgressBar.setProgress(0);
 		screensController.setScreen(Screen.IMAGES_SELECTION);
 	}
 

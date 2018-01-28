@@ -12,6 +12,7 @@ import javafx.event.Event;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.Node;
+import javafx.scene.Scene;
 import javafx.scene.control.TextField;
 import javafx.stage.FileChooser;
 
@@ -33,16 +34,26 @@ public class NeuralNetSelectionController extends ControlledScreen implements In
 		FileChooser fileChooser = new FileChooser();
 		fileChooser.setTitle("Open nnet File");
 		ScreensModel.getInstance().setNeuralNet(fileChooser.showOpenDialog(((Node)event.getTarget()).getScene().getWindow()));
-		pathNameProperty.setValue(ScreensModel.getInstance().getNeuralNet().getPath());
+		if(ScreensModel.getInstance().getNeuralNet() != null) {
+			pathNameProperty.setValue(ScreensModel.getInstance().getNeuralNet().getPath());
+		}
 	}
 
 	@FXML
 	public void onBackClicked() {
+		clearPath();
+		ScreensModel.getInstance().setNeuralNet(null);
 		screensController.setScreen(Screen.MAIN_SCREEN);
 	}
 
 	@FXML
 	public void onNextClicked() {
-			screensController.setScreen(Screen.IMAGES_SELECTION);
+		clearPath();
+		screensController.setScreen(Screen.IMAGES_SELECTION);
+	}
+
+	private void clearPath() {
+		pathNameProperty.setValue("");
+		pathTextField.clear();
 	}
 }

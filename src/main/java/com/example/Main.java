@@ -15,7 +15,6 @@ public class Main extends Application {
 		Parent root = ScreensController.getInstance();
 		primaryStage.setTitle("Image recognition");
         primaryStage.setScene(new Scene(root));
-		primaryStage.setFullScreen(true);
         primaryStage.show();
     }
 

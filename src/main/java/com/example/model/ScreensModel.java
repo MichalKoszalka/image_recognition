@@ -24,8 +24,12 @@ public class ScreensModel {
 	}
 
 	public static ScreensModel getInstance() {
-		if(instance == null) {
-			instance = new ScreensModel();
+		if (instance == null) {
+			synchronized (ScreensModel.class) {
+				if (instance == null) {
+					instance = new ScreensModel();
+				}
+			}
 		}
 		return instance;
 	}

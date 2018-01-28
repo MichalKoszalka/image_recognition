@@ -9,7 +9,6 @@ import com.example.annotation.Controller;
 import com.example.enums.Screen;
 import com.example.model.ScreensModel;
 
-import ch.qos.logback.core.util.StringCollectionUtil;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.event.Event;
 import javafx.fxml.FXML;
@@ -18,7 +17,7 @@ import javafx.scene.Node;
 import javafx.scene.control.TextField;
 import javafx.stage.FileChooser;
 
-@Controller(screen = Screen.IMAGES_SELECTION, path ="fxml/images_selection.fxml")
+@Controller(screen = Screen.IMAGES_SELECTION, path = "fxml/images_selection.fxml")
 public class ImagesSelectionController extends ControlledScreen implements Initializable {
 
 	@FXML
@@ -29,14 +28,15 @@ public class ImagesSelectionController extends ControlledScreen implements Initi
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
 		pathNameProperty = new SimpleStringProperty();
-		pathTextField.textProperty().bind(pathNameProperty);	}
+		pathTextField.textProperty().bind(pathNameProperty);
+	}
 
 	@FXML
 	public void onSelectPathClicked(Event event) {
 		FileChooser fileChooser = new FileChooser();
 		fileChooser.setTitle("Choose images to recognize");
-		List<File> imageFiles = fileChooser.showOpenMultipleDialog(((Node)event.getTarget()).getScene().getWindow());
-		if(imageFiles != null && !imageFiles.isEmpty()) {
+		List<File> imageFiles = fileChooser.showOpenMultipleDialog(((Node) event.getTarget()).getScene().getWindow());
+		if (imageFiles != null && !imageFiles.isEmpty()) {
 			pathNameProperty.setValue(imageFiles.get(0).getParent());
 			ScreensModel.getInstance().setImagesToRecognize(imageFiles);
 		}
@@ -44,11 +44,19 @@ public class ImagesSelectionController extends ControlledScreen implements Initi
 
 	@FXML
 	public void onBackClicked() {
+		clearPath();
+		ScreensModel.getInstance().setImagesToRecognize(null);
 		screensController.setScreen(Screen.NEURAL_NET_SELECTION);
 	}
 
 	@FXML
 	public void onNextClicked() {
+		clearPath();
 		screensController.setScreen(Screen.IMAGE_RECOGNITION);
+	}
+
+	private void clearPath() {
+		pathNameProperty.setValue("");
+		pathTextField.clear();
 	}
 }
